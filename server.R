@@ -13,7 +13,7 @@ shinyServer(function(input, output) {
   output$mygender <- renderText(input$gender)
   output$myslide <- renderText(
     paste("Slide Value Selected = ",input$slide) )
-  
+  output$mystate <- renderText(input$statenames)
   
   
 #   output$distPlot <- renderPlot({

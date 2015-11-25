@@ -19,13 +19,19 @@ shinyUI(fluidPage(
                  textInput("age", "Enter your age", ""),
                  radioButtons("gender","Select the gender", list("Male","Female"), ""),
                  sliderInput("slide", "Select a value from slider", min=0, max=10, value=5, 
-                             animate=T, step=0.1 )),
+                             animate=T, step=0.1 ),
+                 selectInput("statenames", "Slect the State", c("California", "Florida", 
+                              "Texas", "New York", "Arizona"), selected="Texas", 
+                              selectize=T, multiple=F)
+                 ),
 
     
     mainPanel(("Personal Information"),
                  textOutput("myname"),
                  textOutput("myage"),
                  textOutput("mygender"),
-                 textOutput("myslide"))
+                 textOutput("myslide"),
+                 textOutput("mystate")
+              )
   )
 ))
