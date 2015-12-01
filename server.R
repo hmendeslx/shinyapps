@@ -8,12 +8,19 @@ library(shiny)
 
 shinyServer(function(input, output) {
 
-  output$myname <- renderText(input$name)
-  output$myage <- renderText(input$age)
-  output$mygender <- renderText(input$gender)
-  output$myslide <- renderText(
-    paste("Slide Value Selected = ",input$slide) )
-  output$mystate <- renderText(input$statenames)
+  output$myhist <- renderPlot({
+    column <- as.numeric(input$var)
+    hist(iris[,column], breaks=seq(0, max(iris[,column]), l=input$bins+1), col=input$color,
+         main="Histogram of iris dataset", xlab=names(iris[column]))
+  })
+  
+  ## Older code
+  #output$myname <- renderText(input$name)
+  #output$myage <- renderText(input$age)
+  #output$mygender <- renderText(input$gender)
+  #output$myslide <- renderText(
+  #paste("Slide Value Selected = ",input$slide) )
+  #output$mystate <- renderText(input$statenames)
   
   
 #   output$distPlot <- renderPlot({

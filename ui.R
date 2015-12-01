@@ -10,28 +10,41 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Demonstration of shiny widgets..."),
+  titlePanel(title = h2("Demonstration of renderPlot() - a histogram", align="center")),
 
-  # Sidebar with widget demonstration
+  # Sidebar Panel
   sidebarLayout(
-    sidebarPanel(("Enter the personal Information"),
-                 textInput("name", "Enter your name", ""),
-                 textInput("age", "Enter your age", ""),
-                 radioButtons("gender","Select the gender", list("Male","Female"), ""),
-                 sliderInput("slide", "Select a value from slider", min=0, max=10, value=5, 
-                             animate=T, step=0.1 ),
-                 selectInput("statenames", "Slect the State", c("California", "Florida", 
-                              "Texas", "New York", "Arizona"), selected="Texas", 
-                              selectize=T, multiple=F)
+    sidebarPanel( #("Enter the personal Information"),
+                 
+                 selectInput("var", "1. Select the variable from iris dataset", 
+                             choices = c("Sepal.Length" = 1, "Sepal.Width" = 2, "Petal.Length" = 3, 
+                                         "Petal.Width" = 4), selected=1), #selectize=T, multiple=F
+                 br(),
+                 sliderInput("bins", "2. Select the number of BINs for histogram", min=5, max=25, 
+                             value=15), # animate=T, step=0.1 
+                 br(),
+                 radioButtons("color","3. Select the colour of histogram", 
+                              list("Green","Red", "Yellow"), selected="Green")
+                 
+                 ## From older code
+                 #textInput("name", "Enter your name", ""),
+                 #textInput("age", "Enter your age", ""),
+                 #selectInput("statenames", "Slect the State", c("California", "Florida", 
+                 #              "Texas", "New York", "Arizona"), selected="Texas", 
+                 #             selectize=T, multiple=F)
+                 
                  ),
 
     
-    mainPanel(("Personal Information"),
-                 textOutput("myname"),
-                 textOutput("myage"),
-                 textOutput("mygender"),
-                 textOutput("myslide"),
-                 textOutput("mystate")
+    mainPanel(
+      
+        plotOutput("myhist")
+                 
+        #textOutput("myname"),
+        #textOutput("myage"),
+        #textOutput("mygender"),
+        #textOutput("myslide"),
+        #textOutput("mystate")
               )
   )
 ))
