@@ -7,7 +7,22 @@
 library(shiny)
 
 shinyServer(function(input, output) {
+  
+  output$str <- renderPrint({
+    str(iris)
+  })
+  
+  output$sumry <- renderPrint({
+    summary(iris)
+  })
+  
 
+  output$data <- renderTable({
+    column <- as.numeric(input$var)
+    iris[column]
+    #head(iris)
+  })
+  
   output$myhist <- renderPlot({
     column <- as.numeric(input$var)
     hist(iris[,column], breaks=seq(0, max(iris[,column]), l=input$bins+1), col=input$color,
