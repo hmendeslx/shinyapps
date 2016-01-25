@@ -16,12 +16,15 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(h4("Enter the personal information"),
                 textInput("name", "Enter your name", ""),
-                textInput("age", "Enter your age", "")
+                textInput("age", "Enter your age", ""),
+                radioButtons("gender", "Select your gender", list("Male", "Female"), "")
+                
     ),
     mainPanel(h4("Personal Information"),
                 textOutput("myname"),          
-                textOutput("myage")
-              
+                textOutput("myage"),
+                textOutput("mygender")
+                
     )
   )
 ))
