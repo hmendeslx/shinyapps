@@ -10,7 +10,7 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Demonstration of textInput() widget in shiny"),
+  titlePanel("Demonstration of shiny widgets"),
 
   # 
   sidebarLayout(
@@ -21,6 +21,7 @@ shinyUI(fluidPage(
     mainPanel(h4("Personal Information"),
                 textOutput("myname"),          
                 textOutput("myage")
+              
     )
   )
 ))
