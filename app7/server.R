@@ -6,9 +6,26 @@
 #
 
 library(shiny)
+library(psych)
 
 shinyServer(function(input, output) {
 
+  output$summary <- renderPrint({
+    #summary(iris)
+    describe(iris)
+  })
+  
+  
+  output$str <- renderPrint({
+    str(iris)
+  })
+  
+  output$data <- renderTable({
+    colm <- as.numeric(input$var)
+    iris[colm]
+    #head(iris)
+  })
+  
   output$myhist <- renderPlot({
     colm <- as.numeric(input$var)
     hist(iris[,colm], breaks = seq( min( iris[,colm]) , max( iris[,colm]), l=input$bins+1 ), col=input$color,

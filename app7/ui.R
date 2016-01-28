@@ -10,7 +10,7 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel(title = h2("Demonstration of renderPlot() - a histogram", align ="center")),
+  titlePanel(title = h2("Iris Dataset", align ="center")),
 
   # 
   sidebarLayout(
@@ -31,7 +31,13 @@ shinyUI(fluidPage(
     ),
     mainPanel(
               
-        plotOutput("myhist") 
+      tabsetPanel(type="tab",
+        tabPanel("Summary", verbatimTextOutput("summary")),
+        tabPanel("Structure", verbatimTextOutput("str")),
+        tabPanel("Data", tableOutput("data")),
+        tabPanel("Plot",plotOutput("myhist"))
+                  
+        )
                 
     )
   )
